@@ -1,32 +1,42 @@
-console.log('Hello, World!')
-
 class Cat {
-	constructor(name, color) {
-		this.name = name;
-		this.color = color;
+	constructor(name, age) {
+		this._name = name;
+		this._age = age;
+	}
+
+	meow() {
+		console.log(`${this._name} says: Meoooow!`);
 	}
 
 	get name() {
 		return this._name;
 	}
 
-	set name(value) {
-		this._name = value;
+	get age() {
+		return this._age;
 	}
 
-	get color() {
-		return this._color;
+	set age(age) {
+		this._age = age;
 	}
-
-	set color(value) {
-		this._color = value;
-	}
-
-	meow() {
-		console.log(`${this.name} says: Meoooow!`);
-	}
-
 }
 
-const cat = new Cat('Pepita', 'black');
+// creating a new instance of Cat
+const cat = new Cat('Pepita', 3);
+
+// calling the meow method
 cat.meow();
+
+// accessing the name and age properties
+console.log(cat.name);
+console.log(cat.age);
+
+// changing the age property to 10
+cat.age = 10;
+
+// accessing the age property again
+console.log(cat.age);
+
+// if I try to change the name property, nothing happens because the setter is not defined
+cat.name = 'Monstra';
+console.log(cat.name);

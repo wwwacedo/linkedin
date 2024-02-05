@@ -1,36 +1,34 @@
 public class Cat {
 	private String name;
-	private String color;
+	private int age;
 
-	public Cat(String name, String color) {
+	public Cat(String name, int age) {
 		this.name = name;
-		this.color = color;
+		this.age = age;
 	}
 
 	public String getName() {
 		return this.name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public int getAge() {
+		return this.age;
 	}
 
-	public String getColor() {
-		return this.color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public void meow() {
-		System.out.println(this.name + " says: Meooooow!");
+		System.out.println(this.name + " says: Meow!");
 	}
 
 	public static void main(String[] args) {
-		Cat cat = new Cat("Pepita", "black");
+		Cat cat = new Cat("Pepita", 3);
 		cat.meow();
-	}	
-
+		System.out.println(cat.getName());
+		System.out.println(cat.getAge());
+		cat.setAge(10);
+		System.out.println(cat.getAge());
+	}
 }
-
