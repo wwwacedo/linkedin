@@ -1,8 +1,16 @@
-# React + Vite
+## Exploring Recursion in React: building a simple timer with Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 🕒 Project Overview: 
+This timer is quite minimalist, featuring only four components: 'Title', 'Input', 'Display', and 'Button'. Given the small scope of the project, I chose to use CSS-in-JS 🎨.
 
-Currently, two official plugins are available:
+### 🔧 Recursion: 
+At the heart of our timer is the recursive countdown function. By calling itself with a decremented value, it manages the countdown process.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🧩 Component Description:
+→ **Title:** displays the application's title.
+
+→ **Input:** allows users to set the duration of the countdown.
+
+→ **Display:** shows the remaining time.
+
+→ **Button:** starts the countdown.
