@@ -5,23 +5,23 @@ export default function ListItem(props) {
 	return (
 		<>
 			<li onClick={() => setClicked(item.id)}>
+				<span>{item.id}.</span>
 				{item.text}
 			</li>
 			<Modal
-					show={clicked === item.id}
-					onClose={() => setClicked(0)}
-					item={item}
-					data={data}
-					setData={setData}
+				show={clicked === item.id}
+				setClicked={setClicked}
+				item={item}
+				data={data}
+				setData={setData}
 			/>
 			<style jsx>{`
 			li {
 				display: flex;
-				justify-content: center;
 				align-items: center;
 				margin: 1rem;
 				padding: 1rem;
-				min-width: 300px;
+				min-width: 200px;
 				min-height: 60px;
 				border: 1px solid #0079FF;
 				border-radius: 0.25rem;
@@ -34,6 +34,15 @@ export default function ListItem(props) {
 					font-weight: 700;
 					border: 1px solid #ddd;
 				}
+				&:hover span {
+					color: #0079FF;
+				}
+			}
+			li span {
+				color: #F12E5E;
+				margin-right: 1rem;
+				font-size: 1.1rem;
+				font-weight: 700;
 			}
 		
 		`}</style>

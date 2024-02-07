@@ -4,15 +4,15 @@ import List from '../src/components/List'
 const languages = [
 	{
 		id: 1,
-		text: 'John Doe',
+		text: '',
 	},
 	{
 		id: 2,
-		text: 'Jane Doe',
+		text: '',
 	},
 	{
 		id: 3,
-		text: 'John Smith',
+		text: '',
 	}
 ];
 
@@ -21,7 +21,7 @@ export default function Home() {
 
 	return (
 		<List
-			title='Names'
+			title='List'
 			data={data}
 			setData={setData}
 		/>

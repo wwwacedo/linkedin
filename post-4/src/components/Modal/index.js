@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 export default function Modal(props) {
-	const {show, onClose, item, data, setData} = props;
+	const { show, setClicked, item, data, setData } = props;
 	const [saved, setSaved] = useState(false);
 	const [text, setText] = useState(item.text);
 
-	function saveItem(item) {
+	function onSave(item) {
 		setSaved(true);
 		const newData = data.map(dataItem =>
 			dataItem.id === item.id
@@ -15,9 +15,13 @@ export default function Modal(props) {
 		setData(newData);
 		setTimeout(() => {
 			setSaved(false);
-			onClose();
+			setClicked(0);
 		}, 1000);
-		
+	}
+
+	function onClose() {
+		setText(item.text);
+		setClicked(0);
 	}
 
 	if (show) {
@@ -25,16 +29,16 @@ export default function Modal(props) {
 			<>
 				<div className="background">
 					<div className="modal">
-						<h3 className="title">Change name:</h3>
+						<h3 className="title">Change item {item.id}:</h3>
 						<input
 							type="text"
 							value={text}
 							onChange={(e) => setText(e.target.value)}
-							onKeyDown={(e) => e.key === 'Enter' && saveItem(item)}
+							onKeyDown={(e) => e.key === 'Enter' && onSave(item)}
 						/>
 						<div className="buttons">
 							<button
-								onClick={() => saveItem(item)}
+								onClick={() => onSave(item)}
 								className="button save" >Save
 							</button>
 							<button
@@ -86,7 +90,7 @@ export default function Modal(props) {
 					display: none;
 				}
 				input {
-					padding: 0.5rem;
+					padding: 1rem 0.5rem;
 					border: 1px solid #ddd;
 					border-radius: 5px;
 					width: 100%;
@@ -111,7 +115,7 @@ export default function Modal(props) {
 					background-color: #28a745;
 				}
 				.close {
-						background-color: #dc3545;
+					background-color: #dc3545;
 				}
 			`}</style>
 			</>
