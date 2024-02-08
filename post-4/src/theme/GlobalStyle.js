@@ -1,3 +1,5 @@
+import colors from './colors'
+
 export default function GlobalStyle() {
 	return (
 		<style global jsx>{`
@@ -8,8 +10,8 @@ export default function GlobalStyle() {
           	margin: 0;
         }
 		body {
-			background-color: #242424;
-			color: rgba(255, 255, 255, 0.87);
+			background-color: ${colors.gray};
+			color: ${colors.white87};
 		}
 	`}</style>
 	)

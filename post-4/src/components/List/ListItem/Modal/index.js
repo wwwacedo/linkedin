@@ -1,4 +1,5 @@
 import { useState } from "react";
+import colors from "../../../../theme/colors.js";
 
 export default function Modal(props) {
 	const { show, setClicked, item, data, setData } = props;
@@ -29,7 +30,7 @@ export default function Modal(props) {
 			<>
 				<div className="background">
 					<div className="modal">
-						<h3 className="title">Change item {item.id}:</h3>
+						<h3 className="title">Change layer {item.id}:</h3>
 						<input
 							type="text"
 							value={text}
@@ -47,7 +48,7 @@ export default function Modal(props) {
 							</button>
 						</div>
 					</div>
-					<div className={`modal ${saved ? 'enabled' : 'disabled'}`}>
+					<div className={`modal showSaved`}>
 						<h1>Saved!</h1>
 					</div>
 				</div>
@@ -61,7 +62,7 @@ export default function Modal(props) {
     				bottom: 0;
     				left: 0;
     				right: 0;
-    				background-color: rgba(0, 0, 0, 0.5);
+    				background-color: ${colors.black50};
     				z-index: 1000;
 				}
 				.modal {
@@ -81,17 +82,14 @@ export default function Modal(props) {
     				color: black;
 					
 				}
-				.enabled {
-					display: flex;
+				.showSaved {
+					display: ${saved ? 'flex' : 'none'};
 					align-items: center;
 					justify-content: center;
 				}
-				.disabled {
-					display: none;
-				}
 				input {
 					padding: 1rem 0.5rem;
-					border: 1px solid #ddd;
+					border: 1px solid ${colors.lightGray};
 					border-radius: 5px;
 					width: 100%;
 				}
@@ -106,16 +104,16 @@ export default function Modal(props) {
 					padding: 0.5rem 1rem;
 					border: none;
 					border-radius: 5px;
-					background-color: #007bff;
+					background-color: ${colors.blue};
 					color: white;
 					cursor: pointer;
 					width: 50%;
 				}
 				.save {
-					background-color: #28a745;
+					background-color: ${colors.green};
 				}
 				.close {
-					background-color: #dc3545;
+					background-color: ${colors.red};
 				}
 			`}</style>
 			</>

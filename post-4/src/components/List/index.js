@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ListItem from './ListItem';
+import colors from '../../theme/colors.js'
 
 export default function List(props) {
 	const { title, data, setData } = props;
@@ -21,7 +22,7 @@ export default function List(props) {
 			</ul>
 			<style jsx>{`
 			.title {
-				color: #0079FF;
+				color: ${colors.blue};
 			}
 			div {
 				display: flex;

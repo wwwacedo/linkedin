@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import List from '../src/components/List'
 
-const languages = [
+const layers = [
 	{
 		id: 1,
 		text: '',
@@ -13,15 +13,19 @@ const languages = [
 	{
 		id: 3,
 		text: '',
+	},
+	{
+		id: 4,
+		text: '',
 	}
 ];
 
 export default function Home() {
-	const [data, setData] = useState(languages);
+	const [data, setData] = useState(layers);
 
 	return (
 		<List
-			title='List'
+			title='TCP/IP Layers'
 			data={data}
 			setData={setData}
 		/>
