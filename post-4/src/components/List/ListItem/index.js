@@ -1,4 +1,4 @@
-import Modal from '../../Modal';
+import Modal from './Modal';
 
 export default function ListItem(props) {
 	const { item, data, setData, clicked, setClicked } = props;
