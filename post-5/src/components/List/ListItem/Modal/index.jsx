@@ -1,12 +1,14 @@
 import { useState, useContext } from "react";
 import colors from "../../../../theme/colors.js";
 
-import { HomeContext } from '../../../../../pages/index.js';
-import { ListContext } from "../../index.js";
+import { AppContext } from '../../../../../pages/index.jsx';
+import { ListContext } from "../../index.jsx";
 
 export default function Modal({ item }) {
 
-	const { data, setData } = useContext(HomeContext);
+	console.log('fui renderizado');
+
+	const { data, setData } = useContext(AppContext);
 	const { clicked, setClicked } = useContext(ListContext);
 
 	const [saved, setSaved] = useState(false);
@@ -39,6 +41,7 @@ export default function Modal({ item }) {
 						<h3 className="title">Change item:</h3>
 						<input
 							type="text"
+							maxLength={40}
 							value={text}
 							onChange={(e) => setText(e.target.value)}
 							onKeyDown={(e) => e.key === 'Enter' && onSave(item)}
@@ -60,7 +63,8 @@ export default function Modal({ item }) {
 				</div>
 				<style jsx>{`
 				.title {
-					text-align: center;
+					padding: 0 5px;
+					font-size: 1.5rem;
 				}
 				.background {
 					position: fixed;
@@ -75,18 +79,17 @@ export default function Modal({ item }) {
 					display: flex;
     				flex-direction: column;
 					justify-content: center;
-    				gap: 1rem;
+    				gap: .8rem;
     				position: fixed;
     				top: 50%;
     				left: 50%;
     				transform: translate(-50%, -50%);
     				padding: 30px;
-					width: 300px;
-					height: 300px;
+					width: 450px;
+					height: 250px;
     				background-color: white;
     				border-radius: 10px;
     				color: black;
-					
 				}
 				.showSaved {
 					display: ${saved ? 'flex' : 'none'};
@@ -98,6 +101,8 @@ export default function Modal({ item }) {
 					border: 1px solid ${colors.lightGray};
 					border-radius: 5px;
 					width: 100%;
+					height: 60px;
+					font-size: 1.2rem;
 				}
 				.buttons {
         			display: flex;
@@ -107,11 +112,12 @@ export default function Modal({ item }) {
 					width: 100%;
     			}
 				.button {
-					padding: 0.5rem 1rem;
+					padding: 0.8rem 1rem;
 					border: none;
 					border-radius: 5px;
 					background-color: ${colors.blue};
-					color: white;
+					color: ${colors.white};
+					font-size: 1.2rem;
 					cursor: pointer;
 					width: 50%;
 				}

@@ -20,17 +20,17 @@ const layers = [
 	}
 ];
 
-export const HomeContext = createContext();
+export const AppContext = createContext();
 
 export default function Home() {
 	const [data, setData] = useState(layers);
 
 	return (
-		<HomeContext.Provider value={{ data, setData }}>
+		<AppContext.Provider value={{ data, setData }}>
 			<List
 				title='TCP/IP Layers'
 				data={data}
 			/>
-		</HomeContext.Provider>
+		</AppContext.Provider>
 	)
 }

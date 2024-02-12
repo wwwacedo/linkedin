@@ -1,15 +1,15 @@
-import Modal from './Modal';
+import Modal from './Modal/index.jsx';
 import colors from '../../../theme/colors.js';
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
-import { HomeContext } from '../../../../pages/index.js';
-import { ListContext } from '../index.js';
+import { AppContext } from '../../../../pages/index.jsx';
+import { ListContext } from '../index.jsx';
 
 export default function ListItem({ item }) {
 
-	const { deleteItem } = useContext(HomeContext);
+	const { deleteItem } = useContext(AppContext);
 	const { setClicked } = useContext(ListContext);
 
 	return (
@@ -17,7 +17,8 @@ export default function ListItem({ item }) {
 			<li>
 				<div onClick={() => setClicked(item.id)}>
 					<span className='arrow'>
-						<FontAwesomeIcon icon={faArrowRight} /></span>{item.text}
+						<FontAwesomeIcon icon={faArrowRight} />
+					</span>{item.text}
 				</div>
 
 				<span
@@ -52,11 +53,8 @@ export default function ListItem({ item }) {
 				border: 1px solid ${colors.blue};
 				border-radius: 0.25rem;
 				cursor: pointer;
-				transition: background-color 0.3s;
+				transition: border 0.3s;
 				&:hover {
-					background-color: ${colors.whiteSmoke};
-					color: ${colors.gray};
-					font-weight: 700;
 					border: 1px solid ${colors.lightGray};
 				}
 				&:hover span {

@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import colors from "../../../../theme/colors.js";
 
-import { HomeContext } from '../../../../../pages/index.js';
+import { AppContext } from '../../../../../pages/index.js';
 import { ListContext } from "../../index.js";
 
 export default function Modal({ item }) {
 
-	const { data, setData } = useContext(HomeContext);
+	const { data, setData } = useContext(AppContext);
 	const { clicked, setClicked } = useContext(ListContext);
 
 	const [saved, setSaved] = useState(false);

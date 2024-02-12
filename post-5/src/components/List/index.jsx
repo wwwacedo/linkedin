@@ -1,10 +1,12 @@
-import { useState, createContext } from 'react';
-import ListItem from './ListItem';
+import { useState, createContext, useContext } from 'react';
+import ListItem from './ListItem/index.jsx';
 import colors from '../../theme/colors.js'
+import { AppContext } from '../../../pages/index.jsx';
 
 export const ListContext = createContext();
 
-export default function List({ data }) {
+export default function List() {
+	const { data } = useContext(AppContext);
 	const [clicked, setClicked] = useState(0);
 
 	return (

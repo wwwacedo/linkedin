@@ -1,24 +1,19 @@
-import { useState, useRef, createContext } from 'react';
-import List from '../src/components/List'
-import colors from '../src/theme/colors.js'
+import { useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { v4 as uuidv4 } from 'uuid';
+import colors from '../../theme/colors.js'
 
-export const HomeContext = createContext();
-
-export default function Home() {
-	const [data, setData] = useState([]);
+export default function Input({ addItem }) {
+	const inputElement = useRef();
 	const [makeSpin, setMakeSpin] = useState(false);
-	const inputElementOnTop = useRef();
 
-	function handleOnClick() {
-		if (!inputElementOnTop.current.value) {
+	function handleOnClick(text) {
+		if (!inputElement.current.value) {
 			alert('Please enter a value');
 			return;
 		}
-		addItems();
-		inputElementOnTop.current.value = '';
+		addItem(inputElement.current.value);
+		inputElement.current.value = '';
 		setMakeSpin(true);
 		const timer = setTimeout(() => {
 			setMakeSpin(false);
@@ -26,26 +21,14 @@ export default function Home() {
 		return () => clearTimeout(timer);
 	}
 
-	function addItems() {
-		const newItem = {
-			id: uuidv4(),
-			text: inputElementOnTop.current.value
-		}
-		setData([...data, newItem])
-	}
-
-	function deleteItem(id) {
-		const newData = data.filter(item => item.id !== id);
-		setData(newData);
-	}
-
 	return (
-		<div className='wrapper'>
-			<h1 className="title">ToDo List</h1>
+		<>
 			<div className='top'>
-				<input type="text"
+				<input
+					type="text"
 					placeholder="Add a new item..."
-					ref={inputElementOnTop}
+					maxLength={40}
+					ref={inputElement}
 					onKeyDown={(e) => e.key === 'Enter' && handleOnClick()}
 				/>
 				<span
@@ -53,29 +36,12 @@ export default function Home() {
 					onClick={handleOnClick}
 				><FontAwesomeIcon icon={faPlus} /></span>
 			</div>
-			<HomeContext.Provider value={{ data, setData, deleteItem }}>
-				<List data={data} />
-			</HomeContext.Provider>
-
 			<style jsx>{`
-			.wrapper {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				width: 500px;
-				margin: 50px auto;
-			}
-			.title {
-				color: ${colors.blue};
-				font-size: 2.5rem;
-			}
 			.top {
 				width: 550px;
-				padding: 1rem 1.5rem;
+				padding: 1.5rem;
 				display: flex;
 				gap: 1rem;
-				/* flex-direction: column; */
 				align-items: center;
 				justify-content: center;
 				border-radius: 0.5rem;
@@ -110,21 +76,7 @@ export default function Home() {
 				animation: spin .4s linear infinite;
 				color: ${colors.blue};
 			}
-			button {
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-				background-color: ${colors.blue};
-				color: ${colors.gray};
-				font-size: 24px;
-				border: none;
-				cursor: pointer;
-				transition: all 0.3s;
-				&:hover {
-					color: ${colors.white};
-				}
-			}
 		`}</style>
-		</div>
+		</>
 	)
 }
