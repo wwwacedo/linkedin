@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import List from '../src/components/List'
 
 const layers = [
@@ -20,14 +20,17 @@ const layers = [
 	}
 ];
 
+export const HomeContext = createContext();
+
 export default function Home() {
 	const [data, setData] = useState(layers);
 
 	return (
-		<List
-			title='TCP/IP Layers'
-			data={data}
-			setData={setData}
-		/>
+		<HomeContext.Provider value={{ data, setData }}>
+			<List
+				title='TCP/IP Layers'
+				data={data}
+			/>
+		</HomeContext.Provider>
 	)
 }

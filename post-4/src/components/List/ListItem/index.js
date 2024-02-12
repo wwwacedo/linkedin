@@ -1,8 +1,13 @@
 import Modal from './Modal';
 import colors from '../../../theme/colors.js';
+import { useContext } from 'react';
 
-export default function ListItem(props) {
-	const { item, data, setData, clicked, setClicked } = props;
+import { ListContext } from '../index.js';
+
+export default function ListItem({ item }) {
+
+	const { setClicked } = useContext(ListContext)
+
 	return (
 		<>
 			<li onClick={() => setClicked(item.id)}>
@@ -10,11 +15,7 @@ export default function ListItem(props) {
 				{item.text}
 			</li>
 			<Modal
-				show={clicked === item.id}
-				setClicked={setClicked}
 				item={item}
-				data={data}
-				setData={setData}
 			/>
 			<style jsx>{`
 			li {

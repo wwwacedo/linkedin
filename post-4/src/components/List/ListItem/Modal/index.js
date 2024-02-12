@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import colors from "../../../../theme/colors.js";
 
-export default function Modal(props) {
-	const { show, setClicked, item, data, setData } = props;
+import { HomeContext } from '../../../../../pages/index.js';
+import { ListContext } from "../../index.js";
+
+export default function Modal({ item }) {
+
+	const { data, setData } = useContext(HomeContext);
+	const { clicked, setClicked } = useContext(ListContext);
+
 	const [saved, setSaved] = useState(false);
 	const [text, setText] = useState(item.text);
 
@@ -25,7 +31,7 @@ export default function Modal(props) {
 		setClicked(0);
 	}
 
-	if (show) {
+	if (clicked === item.id) {
 		return (
 			<>
 				<div className="background">
